@@ -127,6 +127,28 @@ app.get("/movies/add", (req, res) => {
   res.json(movies);
 });
 
+app.get("/movies/delete/:id", (req, res) => {
+  const delet = req.params.id;
+  if (isNaN(delet)) {
+    res.status(404);
+    res.send({
+      status: 404,
+      error: true,
+      message: `please enter a valid id number`,
+    });
+  } else if (delet < 0 || delet > movies.length - 1) {
+    res.status(404);
+    res.send({
+      status: 404,
+      error: true,
+      message: `the movie ${delet} does not exist`,
+    });
+  } else {
+    movies.splice(delet, 1);
+    res.send(movies);
+  }
+});
+
 app.listen(port, ()=> {
     console.log(`Example app listening on port ${port}`);
 });
