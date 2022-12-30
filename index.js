@@ -12,10 +12,7 @@ app.get("/time", (req, res) => {
   res.send({ status:200, message:Date()});
 });
 
-// app.get("/hello/:id ", (req, res) => {
-//     const id =req.params.id || "Hello user";
-//   res.send({ status: 200, message: `Hello, ${id}`});
-// });
+
 app.get("/hello/:id", (req, res) => {
   const id = req.params.id;
   res.send({ status: 200, message: `hello, ${id}` });
@@ -34,6 +31,29 @@ app.get("/search", (req, res) => {
     });
   }
 });
+
+app.get("/movies/create", (req, res) => {
+  res.send({ status: 200, message: "ok" });
+});
+
+app.get("/movies/read", (req, res) => {
+  res.send({ status: 200, message: movies });
+});
+
+app.get("/movies/update", (req, res) => {
+  res.send({ status: 200, message: "ok" });
+});
+
+app.get("/movies/delete", (req, res) => {
+  res.send({ status: 200, message: "ok" });
+});
+
+const movies = [
+  { title: "Jaws", year: 1975, rating: 8 },
+  { title: "Avatar", year: 2009, rating: 7.8 },
+  { title: "Brazil", year: 1985, rating: 8 },
+  { title: "الإرهاب والكباب", year: 1992, rating: 6.2 },
+];
 
 
 app.listen(port, ()=> {
