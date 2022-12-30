@@ -83,6 +83,20 @@ const movies = [
   { title: "الإرهاب والكباب", year: 1992, rating: 6.2 },
 ];
 
+app.get("/movies/read/id/:id", (req, res) => {
+  const idInteger = parseInt(req.params.id);
+  if (idInteger <= movies.length) {
+    res
+      .status(200)
+      .json({ status: 200, message: "OK", data: movies[idInteger] });
+  } else {
+    res.status(404).json({
+      status: 404,
+      error: true,
+      message: `the movie ${idInteger} does not exist`,
+    });
+  }
+});
 
 app.listen(port, ()=> {
     console.log(`Example app listening on port ${port}`);
