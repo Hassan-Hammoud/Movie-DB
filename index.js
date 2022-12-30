@@ -48,6 +48,34 @@ app.get("/movies/delete", (req, res) => {
   res.send({ status: 200, message: "ok" });
 });
 
+app.get("/movies/read/by-date", (req, res) => {
+    const DateSorted = movies.sort((a, b) => a.year -b.year);
+  res.send({ status: 200, message: DateSorted });
+});
+
+app.get("/movies/read/by-rating", (req, res) => {
+  const ratingSorted = movies.sort((a, b) => b.rating - a.rating);
+  res.send({ status: 200, message: ratingSorted });
+});
+
+app.get("/movies/read/by-title", (req, res) => {
+  const moviesOrderedByTitle = movies.sort((a, b) => {
+    const X = a.title.toLowerCase();
+    const Y = b.title.toLowerCase();
+    if (X < Y) {
+      return -1;
+    } else if (X > Y) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  res.send({
+    status: 200,
+    data: moviesOrderedByTitle,
+  });
+});
+
 const movies = [
   { title: "Jaws", year: 1975, rating: 8 },
   { title: "Avatar", year: 2009, rating: 7.8 },
