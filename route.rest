@@ -1,0 +1,15 @@
+GET http://localhost:3000/movie
+
+###
+
+POST http://localhost:3000/movie
+Content-Type: application/json
+
+{
+    "title": "home alone",
+    "year": 1992,
+    "rating": 6
+}
+
+###
+DELETE http://localhost:3000/movie/63b048e887443f7b4fce88e1
